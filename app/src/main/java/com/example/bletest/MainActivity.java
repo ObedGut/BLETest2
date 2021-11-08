@@ -1,5 +1,6 @@
 package com.example.bletest;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             finish();
             return;
+        }
+        int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+        permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
+        if (permissionCheck != 0) {
+
+            this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001); //Any number
         }
 
         btnScan = (Button)findViewById(R.id.scan);
